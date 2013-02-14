@@ -1,11 +1,11 @@
 (ns boilerpipe-clj.core
   (:require [clojure.string :as s]
-            [clj-http [client :as http]
+            [clj-http [client  :as http]
                       [cookies :as cookies]])
   (:import de.l3s.boilerpipe.extractors.ArticleExtractor
            de.l3s.boilerpipe.extractors.DefaultExtractor))
 
-(def ^:private user-agent "Mozilla/5.0 (Windows NT 6.1; rv:10.0) Gecko/20100101 Firefox/10.0")
+(def ^:dynamic *user-agent* "Mozilla/5.0 (Windows NT 6.1; rv:10.0) Gecko/20100101 Firefox/10.0")
 
 (def article-extractor (ArticleExtractor/getInstance))
 (def default-extractor (DefaultExtractor/getInstance))
@@ -19,7 +19,7 @@
   (extract-text [source extractor]
     (let [cookie-store (cookies/cookie-store)
           resp    (http/get (str source) {:cookie-store cookie-store
-                                          :headers {"User-Agent" user-agent}})
+                                          :headers {"User-Agent" *user-agent*}})
           body-str (:body resp)]
       (extract-text body-str extractor)))
   Object
@@ -46,6 +46,5 @@
       (map #(str "<p>" % "</p>"))
       (s/join ""))))
 
-;; TODO: is this needed? Does (get-text "<url>") work?
 (defn get-url-text [url]
   (get-text (java.net.URL. url)))
