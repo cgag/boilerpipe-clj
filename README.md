@@ -1,6 +1,6 @@
 # boilerpipe-clj
 
-A Clojure library designed to ... well, that part is up to you.
+A simple wrapper around the Boilerpipe text extraction library.
 
 ## Usage
 
