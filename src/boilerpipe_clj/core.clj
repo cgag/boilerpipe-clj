@@ -17,11 +17,14 @@
 (extend-protocol TextExtractor
   java.net.URL
   (extract-text [source extractor]
-    (let [cookie-store (cookies/cookie-store)
-          resp    (http/get (str source) {:cookie-store cookie-store
-                                          :headers {"User-Agent" *user-agent*}})
-          body-str (:body resp)]
-      (extract-text body-str extractor)))
+    (try
+      (let [cookie-store (cookies/cookie-store)
+            resp (http/get (str source) {:cookie-store cookie-store
+                                         :headers {"User-Agent" *user-agent*}})
+            body-str (:body resp)]
+        (extract-text body-str extractor))
+      (catch Exception e
+        (str "Error fetching " source))))
   Object
   (extract-text [source extractor]
     (.getText extractor source)))
@@ -47,4 +50,7 @@
       (s/join ""))))
 
 (defn get-url-text [url]
-  (get-text (java.net.URL. url)))
+  (try
+    (get-text (java.net.URL. url))
+    (catch Exception e
+      (str "Invalid url: " url))))
