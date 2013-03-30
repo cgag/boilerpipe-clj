@@ -7,10 +7,11 @@
 
   Will use Boilerpipe ArticleExtractor impl if not passed an extractor
   instance as second argument."
-  [^String source & [extractor]]
-  (if extractor
-    (.getText extractor source)
-    (.getText ext/article-extractor source)))
+  ([^String source extractor]
+   (.getText extractor source))
+
+  ([^String source]
+   (get-text source ext/article-extractor)))
 
 (defn get-text-as-html [^String source & [extractor]]
   "Takes HTML as String and returns extracted content in <p> tags."
