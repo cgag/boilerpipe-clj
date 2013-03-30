@@ -5,12 +5,12 @@
 (defn get-text
   "Takes HTML as String and returns extracted content.
 
-  Will use default Boilerpipe Extractor impl if not passed an extractor
+  Will use Boilerpipe ArticleExtractor impl if not passed an extractor
   instance as second argument."
   [^String source & [extractor]]
-  (if-let [extractor extractor]
+  (if extractor
     (.getText extractor source)
-    (.getText ext/default-extractor source)))
+    (.getText ext/article-extractor source)))
 
 (defn get-text-as-html [^String source & [extractor]]
   "Takes HTML as String and returns extracted content in <p> tags."
