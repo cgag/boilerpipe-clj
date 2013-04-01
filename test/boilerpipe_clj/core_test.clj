@@ -2,6 +2,12 @@
   (:use clojure.test
         boilerpipe-clj.core))
 
-(deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 0 1))))
+(defonce test-article 
+  (slurp "./test/boilerpipe_clj/resources/greenspun-test.html"))
+
+(deftest get-text-extraction
+  (testing "that get-text extracts something from an article"
+    (let [res (get-text test-article)] 
+      (is (and 
+            (not= res "")
+            (not= res nil))))))
