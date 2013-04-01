@@ -1,18 +1,18 @@
 (ns boilerpipe-clj.core
   (:require [boilerpipe-clj.extractors :as ext])
-  (:require [boilerpipe-clj.util :as util]))
+  (:require [boilerpipe-clj.util :as util])
+  (:import (de.l3s.boilerpipe.extractors ExtractorBase)))
 
 (defn get-text
   "Takes HTML as String and returns extracted content.
 
   Will use Boilerpipe ArticleExtractor impl if not passed an extractor
   instance as second argument."
-  ([^String source extractor]
-   (.getText extractor source))
+  ([source]
+     (get-text source ext/article-extractor))
+  ([^String source ^ExtractorBase extractor]
+     (.getText extractor source)))
 
-  ([^String source]
-   (get-text source ext/article-extractor)))
-
-(defn get-text-as-html [^String source & [extractor]]
+(defn get-text-as-html [source & [extractor]]
   "Takes HTML as String and returns extracted content in <p> tags."
   (util/wrap-paragraphs (get-text source extractor)))
