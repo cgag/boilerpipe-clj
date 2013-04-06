@@ -15,4 +15,6 @@
 
 (defn get-text-as-html [source & [extractor]]
   "Takes HTML as String and returns extracted content in <p> tags."
-  (util/wrap-paragraphs (get-text source extractor)))
+  (util/wrap-paragraphs (if extractor
+                          (get-text source extractor)
+                          (get-text source))))
