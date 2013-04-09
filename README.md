@@ -63,6 +63,10 @@ Utility functions for pretty-printing results or munging the returned text for
 display are currently available in the `boilerpipe-clj.utils` namespace. This
 may be subject to change. 
 
+## Contributors
+* Curtis Gagliardi ([@cgag](https://github.com/cgag))
+* Nick Barnwell ([@nickbarnwell](https://github.com/nickbarnwell))
+
 ## License
 
 Copyright © 2013 [Curtis Gagliardi](http://curtis.io/)
