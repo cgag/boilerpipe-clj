@@ -11,7 +11,7 @@ A simple wrapper around the Boilerpipe text extraction library.
 With Leiningen, add it to the dependencies in `project.clj`:
 
 ```clojure
-[io.curtis/boilerpipe-clj "0.2.1"]
+[io.curtis/boilerpipe-clj "0.2.0"]
 ```
 
 ## Usage
