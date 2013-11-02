@@ -11,7 +11,7 @@ A simple wrapper around the Boilerpipe text extraction library.
 With Leiningen, add it to the dependencies in `project.clj`:
 
 ```clojure
-[io.curtis/boilerpipe-clj "0.2.0"]
+[io.curtis/boilerpipe-clj "0.3.0"]
 ```
 
 ## Usage
@@ -29,10 +29,10 @@ The main function for extracting human-readable text from an HTML document is
 `get-text`.
 
 ```clojure
-user=> (def article (slurp "http://www.newyorker.com/reporting/2013/03/11/130311fa_fact_kolbert?currentPage=all"))
+user=> (def article (slurp "https://help.github.com/articles/open-source-licensing"))
 #'user/article
-user=> (get-text article) ;;Uses the ArticleExtractor by default; it's tuned for news
-"REM Sleep\nNathaniel Kleitman, known as the “father of modern sleep research,” was born in 1895...[redacted]"
+user=> (get-text article)
+"all\nPublic repositories on GitHub are often used to share open source software. Open source software is software that is licensed so that others are free to use, change, [...]"
 ```
 
 It expects HTML as a String for its first argument, but you can also opt to use
@@ -40,8 +40,8 @@ different strategies for extracting text by passing it an extractor instance as
 the second arg.
 
 ```clojure
-user=> (get-text article boilerpipe-clj.extractors/default-extractor) 
-"Some people can’t go to sleep until late; others can’t sleep in. Both suffer “social jet lag.”...[redacted]"
+user=>  (get-text article boilerpipe-clj.extractors/default-extractor)
+"Open source licensing\nWhich license is right for me?!\nDon't fret! Choosing an open source license can be confusing. That's why we created choosealicense.com , a website that helps you make decisions about how to license your code. [...]"
 ```
 
 ### Extraction Strategies - boilerpipe-clj.extractors 
@@ -57,12 +57,6 @@ Defining your own strategies is not currently possible from Clojure. Please
 refer to the Boilerpipe documentation for more info on implementing them in
 Java.
 
-### Utility Functions- boilerpipe-clj.util
-
-Utility functions for pretty-printing results or munging the returned text for
-display are currently available in the `boilerpipe-clj.utils` namespace. This
-may be subject to change. 
-
 ## Contributors
 * Curtis Gagliardi ([@cgag](https://github.com/cgag))
 * Nick Barnwell ([@nickbarnwell](https://github.com/nickbarnwell))
@@ -70,5 +64,16 @@ may be subject to change.
 ## License
 
 Copyright © 2013 [Curtis Gagliardi](http://curtis.io/)
+Copyright © 2013 [Nick Barnwell](https://github.com/nickbarnwell)
 
-Distributed under the Eclipse Public License, the same as Clojure.
+boilerpipe-clj is provided under the ASL 2.0 license.
+
+The full license is available in LICENSE.md
+
+## Changes
+
+### 0.3.0
+
+Remove util namespace, it's outside the scope of this library.  It only made it in here
+due to lazyness when pulling this code out of another project. I suspect no one but me
+was using them anyway. 
