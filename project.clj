@@ -1,4 +1,4 @@
-(defproject io.curtis/boilerpipe-clj "0.3.0"
+(defproject io.curtis/boilerpipe-clj "0.3.1"
   :description "A simple wrapper around the Boilerpipe library for extracting text from html articles/pages"
   :url "http://curtis.io"
   :license {:name "Apache License, Version 2.0"

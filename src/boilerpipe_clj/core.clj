@@ -14,5 +14,7 @@
      (.getText extractor source)))
 
 (defn get-images
-    [url]
-    (.process ext/image-extractor (as-url url) ext/default-extractor))
+  "Takes the URL of the page and return list of Image"
+  [^String url]
+  (.process ext/image-extractor (as-url url) ext/default-extractor))
+
