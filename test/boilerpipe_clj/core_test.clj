@@ -3,7 +3,7 @@
             [boilerpipe-clj.core :refer :all]
             [boilerpipe-clj.extractors :as ext]))
 
-(defonce test-article 
+(defonce test-article
   (slurp "./test/boilerpipe_clj/resources/greenspun-test.html"))
 
 (def extractors [ext/default-extractor
@@ -13,8 +13,8 @@
 (deftest get-text-extraction
   (testing "get-text extracts something from an article
             without a provided extractor"
-    (let [res (get-text test-article)] 
-      (is (and 
+    (let [res (get-text test-article)]
+      (is (and
            (not= res "")
            (not= res nil)))))
   (testing "All the available extractors extract something

@@ -1,5 +1,5 @@
-(ns boilerpipe-clj.extractors 
-  (:import (de.l3s.boilerpipe.extractors 
+(ns boilerpipe-clj.extractors
+  (:import (de.l3s.boilerpipe.extractors
              ArticleExtractor
              ArticleSentencesExtractor
              DefaultExtractor)))
