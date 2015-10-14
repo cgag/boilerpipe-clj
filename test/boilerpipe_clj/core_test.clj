@@ -10,7 +10,6 @@
                  ext/article-extractor
                  ext/article-sentence-extractor])
 
-;; TODO: Why does lein test say it tests 6400 assertions?
 (deftest get-text-extraction
   (testing "get-text extracts something from an article
             without a provided extractor"
@@ -21,6 +20,6 @@
   (testing "All the available extractors extract something
            from the article"
     (doseq [ext extractors
-            res (get-text test-article ext)]
+            :let [res (get-text test-article ext)]]
       (is (and (not= res "")
                (not (nil? res)))))))
